@@ -1,0 +1,21 @@
+{
+  "name": "coursework2",
+  "version": "1.0.0",
+  "description": "A Hello World HTTP server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luki110/coursework_2/"
+  },
+  "keywords": [
+    "node",
+    "docker",
+    "dockerfile"
+  ],
+  "author": "lukas.bonkowski@gmail.com",
+  "license": "ISC"
+}
