@@ -1,0 +1,26 @@
+- name: Configure Production VM
+  hosts: azure
+  user: azureuser
+  become: yes
+
+  vars:
+    myResourceGroup: ansible
+    myVM: ansible-production
+
+  tasks:
+    
+  - stat:
+      path: /home/azureuser/kubernetes-install.sh
+    register: result
+
+  - name: Copy kubernetes-install.sh to ProductionVM
+    copy:
+      src: ./kubernetes-install.sh
+      dest: /home/azureuser/kubernetes-install.sh
+    when: result.stat.exists == false
+
+  - name: Set kubernetes-install.sh permissions
+    command: chmod +x /home/azureuser/kubernetes-install.sh
+
+  - name: Run Kubernetes installation script
+    command: sudo /home/azureuser/kubernetes-install.sh
