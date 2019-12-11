@@ -1,7 +1,10 @@
 pipeline 
 {
     agent any
-   
+    environment
+    {
+        CI = 'true'
+    }
     stages
     {
        stage('Sonarqube')
@@ -22,26 +25,29 @@ pipeline
                 }
             }
         }
+    }
+}
+node {
+    def app
+
+    stage('Clone repository')
+    {
+
+        checkout scm
+    }
+
+    stage('Build image') 
+    {
         
+        app = docker.build("szarlej110/coursework2")
+    }
 
-        stage('Clone repository')
-        {
-            checkout scm
-        }
 
-        stage('Build image') 
-        {
-            app = docker.build("szarlej110/coursework2")
-        }
-
-        stage('Push image')
-        {
-            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
-            {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
-            }
+    stage('Push image') 
+    {        
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
     }
 }
-
