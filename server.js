@@ -18,5 +18,5 @@ var www = http.createServer(handleRequest);
 www.listen(8080,function () {
     startTime = new Date();;
     host = process.env.HOSTNAME;
-    console.log ("Hello There dude Started At:",startTime, "| Running On: " ,host, "\n" );
+    console.log ("Hello There my dude Started At:",startTime, "| Running On: " ,host, "\n" );
 });
