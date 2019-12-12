@@ -57,9 +57,9 @@ node {
             app.push("latest")
         }
     }   
-    stage('Update kubernates')
+    stage('Update kubernetes')
     {
-       sh 'ssh azureuser@168.61.219.5 kubectl set image deployments/luki110-coursework2 luki110-coursework2=szarlej110/coursework2:latest'
+       sh "ssh azureuser@168.61.219.5 kubectl set image deployment/luki110-coursework2 luki110-coursework2=szarlej110/coursework2:${env.BUILD_NUMBER}"
     }
     
 }
