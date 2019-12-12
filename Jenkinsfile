@@ -58,9 +58,5 @@ node {
         }
     }
 
-    stage('Update kubernates')
-    {
-        ssh azureuser@168.61.219.5 kubectl set image deployments/luki-coursework2 luki-coursework2=szarlej110/coursework2:latest
-    }
     
 }
