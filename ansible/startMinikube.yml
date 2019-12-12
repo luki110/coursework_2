@@ -1,0 +1,12 @@
+- name: Configure Node VM
+  hosts: azure
+  user: azureuser
+  become: no
+
+  vars:
+    myResourceGroup: kubernetes
+    myVM: production-node
+
+  tasks:
+  - name: Start Minikube 
+    command: minikube start --vm-driver=virtualbox

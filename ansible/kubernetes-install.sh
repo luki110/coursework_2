@@ -22,6 +22,5 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 
 chmod +x minikube  
 
-sudo mv minikube /usr/local/bin/  
+sudo mv minikube /usr/local/bin/
 
-minikube start --vm-driver=virtualbox

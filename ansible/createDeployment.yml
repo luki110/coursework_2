@@ -1,0 +1,12 @@
+- name: Create First Deployment For Latest Build
+  hosts: azure
+  user: azureuser
+  become: no
+
+  vars:
+    myResourceGroup: ansible
+    myVM: ansible-production
+
+  tasks:
+  - name: create deployment
+    command: kubectl create deployment luki110-coursework2 --image=szarlej110/coursework2:latest

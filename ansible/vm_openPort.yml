@@ -1,0 +1,20 @@
+- name: Open Port 8080
+  hosts: localhost
+  connection: local
+
+  vars:
+    myResourceGroup: ansible
+    myNetworkSecurityGroup: ansible-production-nsg
+
+  tasks:
+  - name: Create Network Security Group that allows port8080
+    azure_rm_securitygroup:
+      resource_group: "{{ myResourceGroup}}"
+      name: "{{ myNetworkSecurityGroup }}"
+      rules:
+        - name: serverPort
+          protocol: Tcp
+          destination_port_range: 8080
+          access: Allow
+          priority: 1002
+          direction: Inbound
