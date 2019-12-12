@@ -4,9 +4,17 @@
   become: no
 
   vars:
-    myResourceGroup: kubernetes
+    myResourceGroup: ansible
     myVM: production-node
 
   tasks:
-  - name: Start Minikube 
-    command: minikube start --vm-driver=virtualbox
+  - name: Copy startKube.sh to Node
+    copy:
+     src: ./startKube.sh
+     dest: /home/azureuser/startKube.sh
+
+  - name: Edit Permissions
+    command: chmod +x startKube.sh
+
+  - name: Deploy Container
+    command: ./startKube.sh
